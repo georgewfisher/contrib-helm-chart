@@ -47,6 +47,7 @@ with urllib.request.urlopen(
                 "REDASH_LDAP_BIND_DN_PASSWORD",
                 "REDASH_MAIL_PASSWORD",
                 "REDASH_GOOGLE_CLIENT_SECRET",
+                "REDASH_AZURE_CLIENT_SECRET",
                 "REDASH_COOKIE_SECRET",
                 "REDASH_SECRET_KEY",
             ]:

@@ -234,6 +234,21 @@ Shared environment block used across each component.
       name: {{ include "redash.secretName" . }}
       key: googleClientSecret
 {{- end }}
+{{- if .Values.redash.azureClientId }}
+- name: REDASH_AZURE_CLIENT_ID
+  value: {{ default  .Values.redash.azureClientId | quote }}
+{{- end }}
+{{- if or .Values.redash.azureClientSecret .Values.redash.existingSecret }}
+- name: REDASH_AZURE_CLIENT_SECRET
+  valueFrom:
+    secretKeyRef:
+      name: {{ include "redash.secretName" . }}
+      key: azureClientSecret
+{{- end }}
+{{- if .Values.redash.azureTenantId }}
+- name: REDASH_AZURE_TENANT
+  value: {{ default  .Values.redash.azureTenantId | quote }}
+{{- end }}
 {{- if .Values.redash.remoteUserLoginEnabled }}
 - name: REDASH_REMOTE_USER_LOGIN_ENABLED
   value: {{ default  .Values.redash.remoteUserLoginEnabled | quote }}
